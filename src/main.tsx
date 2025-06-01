@@ -7,7 +7,7 @@ import Top from './components/Top.tsx'
 import New from './components/New.tsx'
 import Best from './components/Best.tsx'
 
-import { useIsSmoking } from './stores/cigarette';
+import { useCigarette } from './stores/cigarette';
 
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,7 +17,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 const queryClient = new QueryClient();
 
 function Main() {
-  const { isSmoking, setIsSmoking } = useIsSmoking();
+  const { isSmoking, totalSmoked, startSmoking } = useCigarette();
 
   return (
     <BrowserRouter>
@@ -28,10 +28,10 @@ function Main() {
               <div className='col-12 py-4 mt-5'>
                 <h2 className='fw-lighter mt-5 mb-3'>Cigareditte</h2>
                 <p className='mt-2 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
-                <button className='mt-5 btn btn-light btn-lg' onClick={() => setIsSmoking(true)} disabled={isSmoking}>
+                <button className='mt-5 btn btn-light btn-lg' onClick={() => startSmoking()} disabled={isSmoking}>
                   Light Cigarette
                 </button>
-                <p className=' mt-2 text-xs'>[Cigarettes Smoked: 0]</p>
+                <p className=' mt-2 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>
               </div>
             </div>
           </div>
