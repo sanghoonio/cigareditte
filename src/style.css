@@ -1,0 +1,142 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Asap+Condensed:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* MAIN */
+main, p, span, button, a, ul, li {
+  font-family: 'Asap Condensed', arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Asap Condensed', arial, sans-serif  !important;
+  font-weight: 300 !important;
+  font-style: normal  !important;
+}
+
+.text-xs {
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+}
+
+.text-hover {
+  text-decoration-line: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+@media (max-width: 992px) {
+  .page-padding {
+    padding: 0 2vw;
+  }
+  .page-width {
+    padding: 0;
+  }
+  .sidebar, .desktop {
+    display: none;
+  }
+  .topbar {
+    width: calc(100% + 10vw);
+    backdrop-filter: blur(6px);
+    background-color: #ffffffbb;
+    margin: 0 -5vw;
+    padding: 0 5vw;
+  }
+  .content {
+    width: 100%;
+  }
+  .text-hover:hover {
+    text-decoration-line: none;
+  }
+}
+@media (min-width: 992px) {
+  .sidebar {
+    width: 12%;
+  }
+  .topbar, .mobile {
+    display: none;
+  }
+  .content {
+    width: 88%;
+  }
+  .text-hover:hover {
+    text-decoration-line: underline;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .page-padding {
+    padding: 0 2vw;
+  }
+  /* .page-width {
+    padding-top: 4em;
+    padding-bottom: 4em;
+  } */
+}
+@media (min-width: 1200px) {
+  .page-padding {
+    padding: 0 2vw;
+  }
+  /* .page-width {
+    padding-top: 5em;
+    padding-bottom: 5em;
+  } */
+}
+
+.btn-xs {
+  padding: 0.125rem 0.6rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  border-radius: 0.25rem !important;
+}
+
+.btn-xs > .bi {
+  font-size: 0.7rem;
+  vertical-align: -0.125em;
+}
+
+.smoke-container {
+  position: relative;
+  height: 100px;
+  overflow: hidden;
+}
+
+.smoke-particle {
+  position: absolute;
+  font-family: monospace;
+  color: #888;
+  pointer-events: none;
+  animation: smokeRise 3s ease-out forwards;
+  font-size: 12px;
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.5);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) translateX(var(--drift)) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes ember-glow {
+  0% {
+    backgroundColor: #ff4400;
+    boxShadow: 0 0 2px #ff4400;
+  }
+  100% {
+    backgroundColor: #ff6600;
+    boxShadow: 0 0 4px #ff6600, 0 0 6px #ff4400;
+  }
+}
