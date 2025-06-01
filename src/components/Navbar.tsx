@@ -1,5 +1,7 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+
+import { useIsSmoking, useBurnProgress } from '../stores/cigarette';
 
 type NavLinkProps = {
   page: string; 
@@ -61,8 +63,8 @@ function createSmoke(startX: number, startY: number) {
 function Navbar() {
   const location = useLocation().pathname.substring(1) || 'hot';
 
-  const [isSmoking, setIsSmoking] = useState(false)
-  const [burnProgress, setBurnProgress] = useState(0)
+  const { isSmoking, setIsSmoking } = useIsSmoking();
+  const { burnProgress, setBurnProgress } = useBurnProgress();
   
   const smokeInterval = useRef<number | null>(null)
   const burnInterval = useRef<number | null>(null)
@@ -71,7 +73,7 @@ function Navbar() {
     // Cigarette starts at left: 50px, width: 100px
     // Smoke should come from the ember position
     const cigaretteStart = 50;
-    const cigaretteWidth = 150;
+    const cigaretteWidth = 100;
     const smokeX = cigaretteStart + (cigaretteWidth * progress / 100);
     return { x: smokeX, y: 60 };
   };
@@ -86,27 +88,26 @@ function Navbar() {
     const initialPos = getSmokePosition(0);
     createSmoke(initialPos.x, initialPos.y);
     
-    // Continue smoke every 500ms
+    // Continue smoke every 500ms - use getState() to get current value
     smokeInterval.current = setInterval(() => {
-      setBurnProgress(currentProgress => {
-        const pos = getSmokePosition(currentProgress);
-        createSmoke(pos.x, pos.y);
-        return currentProgress;
-      });
+      const currentProgress = useBurnProgress.getState().burnProgress;
+      const pos = getSmokePosition(currentProgress);
+      createSmoke(pos.x, pos.y);
     }, 500);
     
     // Burn progress over 5 minutes (300 seconds)
     burnInterval.current = setInterval(() => {
-      const burnTime = 300
-      setBurnProgress(prev => {
-        const newProgress = prev + (100 / burnTime);
-        if (newProgress >= 100) {
-          stopSmoking();
-          return 100;
-        }
-        return newProgress;
-      });
-    }, 1000); // Update every second
+      const burnTime = 300;
+      const currentProgress = useBurnProgress.getState().burnProgress;
+      const newProgress = currentProgress + (100 / burnTime);
+      
+      if (newProgress >= 100) {
+        setBurnProgress(100);
+        stopSmoking();
+      } else {
+        setBurnProgress(newProgress);
+      }
+    }, 1000);
   }
 
   const stopSmoking = () => {
@@ -136,7 +137,7 @@ function Navbar() {
               {/* <NavLink page={'comments'} title={'Comments'} position='side' currentPage={location}/> */}
             </div>
 
-            {/* <div className="smoke-container" style={{
+            <div className="smoke-container" style={{
               position: 'relative',
               height: '100px',
               overflow: 'hidden',
@@ -148,7 +149,7 @@ function Navbar() {
                 position: 'absolute',
                 bottom: '30px',
                 left: '50px',
-                width: '150px',
+                width: '100px',
                 height: '15px',
                 backgroundColor: 'white',
                 // border: '1px solid #ddd',
@@ -178,8 +179,8 @@ function Navbar() {
               <div style={{
                 position: 'absolute',
                 bottom: '30px',
-                left: '200px',
-                width: '50px',
+                left: '150px',
+                width: '30px',
                 height: '15px',
                 backgroundColor: '#f4e4bc',
                 borderLeft: '2px solid #ddd',
@@ -195,7 +196,7 @@ function Navbar() {
                 Put Out
               </button>
               <p>Status: {isSmoking ? `Smoking 🔥 (${Math.round(burnProgress)}% burnt)` : burnProgress === 100 ? 'Finished' : 'Not lit'}</p>
-            </div> */}
+            </div>
 
           </div>
         </div>
@@ -205,16 +206,15 @@ function Navbar() {
         <div className='row page-width'>
           <div className='col-12 p-4'>
             <Link to='' className='text-decoration-none text-dark'>
-              <h5 className='d-inline fw-medium mb-3'>Sam Park</h5>
+              <h5 className='d-inline fw-medium mb-3'>Cigareditte</h5>
             </Link>
             <span className='d-inline float-end cursor-pointer dropdown-hover' data-bs-toggle='dropdown' aria-expanded='false'>
               <h5 className='bi bi-three-dots mb-0'></h5>
             </span>
             <div className='dropdown-menu px-3 shadow border-0'>
-              <NavLink page='about' title='About' position='top' currentPage={location}/>
-              <NavLink page='journal' title='Journal' position='top' currentPage={location}/>
-              <NavLink page='resume' title='Resume' position='top' currentPage={location}/>
-              <NavLink page='portfolio' title='Portfolio' position='top' currentPage={location}/>
+              <NavLink page={'hot'} title={'Hot'} position='side' currentPage={location}/>
+              <NavLink page={'new'} title={'New'} position='side' currentPage={location}/>
+              <NavLink page={'best'} title={'Best'} position='side' currentPage={location}/>
             </div>
           </div>
         </div>

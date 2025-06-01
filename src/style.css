@@ -42,6 +42,9 @@ h1, h2, h3, h4, h5, h6 {
   .sidebar, .desktop {
     display: none;
   }
+  .mobile.item {
+    display: inline-block;
+  }
   .topbar {
     width: calc(100% + 10vw);
     backdrop-filter: blur(6px);
@@ -62,6 +65,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   .topbar, .mobile {
     display: none;
+  }
+  .desktop.item {
+    display: inline-block;
   }
   .content {
     width: 88%;

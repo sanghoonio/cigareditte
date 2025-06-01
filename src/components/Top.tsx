@@ -11,15 +11,20 @@ function Top() {
   const { data: topItems } = useTopItems();
 
   const topItemDetails = useItems(topItems?.slice(0, 30));
+  const isLoading = topItemDetails.some(query => query.isLoading);
   const topItemsData = topItemDetails.map(query => query.data);
+
+  if (isLoading) {
+    return <div className='row'><h6>Loading...</h6></div>;
+  }
 
   return (
     <div className='row'>
-      <div className='col-5'>
+      <div className='col-12 col-lg-5'>
 
         {topItemsData.map((item, index) => 
           <div className='mb-2 position-relative text-dark'>
-            <h6 className={`mb-0 cursor-pointer desktop ${selectedIndex == index ? 'fw-bold' : ''}`} onClick={() => {
+            <h6 className={`mb-0 cursor-pointer desktop item ${selectedIndex == index ? 'fw-bold' : ''}`} onClick={() => {
               if (selectedURL == item?.url) {
                 setSelectedURL(null)
                 setSelectedIndex(null)
@@ -29,7 +34,7 @@ function Top() {
               }
             }}
             >{item?.title}</h6>
-            <a className='text-decoration-none text-dark mobile' href={item?.url} target='_blank' rel='noopener noreferrer'>
+            <a className='text-decoration-none text-dark mobile item' href={item?.url} target='_blank' rel='noopener noreferrer'>
               <h6 className='mb-0'>{item?.title}</h6>
             </a>
             <div className='text-xs'>
@@ -39,7 +44,7 @@ function Top() {
         )}
 
       </div>
-      <div className='col-7'>
+      <div className='col-7 desktop'>
         {!!selectedURL && <SelectedItemView selectedURL={selectedURL} setSelectedURL={setSelectedURL} setSelectedIndex={setSelectedIndex}/>}
       </div>
     </div>
