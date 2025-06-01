@@ -15,6 +15,10 @@ h1, h2, h3, h4, h5, h6 {
   font-style: normal  !important;
 }
 
+html, body, div {
+  background-color: #e2ded2;
+}
+
 .text-xs {
   font-size: 0.75rem; /* 12px */
   line-height: 1rem; /* 16px */
@@ -46,11 +50,11 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
   }
   .topbar {
-    width: calc(100% + 10vw);
-    backdrop-filter: blur(6px);
-    background-color: #ffffffbb;
-    margin: 0 -5vw;
-    padding: 0 5vw;
+    width: calc(100% + 4vw) !important;
+    backdrop-filter: blur(6px) !important;
+    background-color: #e2ded2bb !important;
+    margin: 0 -2vw !important;
+    padding: 0 2vw !important;
   }
   .content {
     width: 100%;
@@ -62,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 992px) {
   .sidebar {
     width: 12%;
+    min-width: 150px;
   }
   .topbar, .mobile {
     display: none;

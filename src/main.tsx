@@ -27,8 +27,14 @@ function Main() {
             <div className='row page-width text-center mt-5'>
               <div className='col-12 py-4 mt-5'>
                 <h2 className='fw-lighter mt-5 mb-3'>Cigareditte</h2>
-                <p className='mt-2 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
-                <button className='mt-5 btn btn-light btn-lg' onClick={() => startSmoking()} disabled={isSmoking}>
+                <p className='mt-2 mb-0 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                <p><img 
+                  src='ashtray.png' 
+                  width='138px' 
+                  height='138px' 
+                  alt='ashtray'
+                /></p>
+                <button className='btn btn-outline-dark btn-md fw-light' onClick={() => startSmoking()} disabled={isSmoking}>
                   Light Cigarette
                 </button>
                 <p className=' mt-2 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>

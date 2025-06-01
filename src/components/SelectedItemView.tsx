@@ -38,7 +38,7 @@ export function SelectedItemView(props: Props) {
       </button>
     </div>
     <iframe 
-      className='rounded-bottom border-top' 
+      className='rounded-bottom border-top bg-white' 
       src={selectedURL} 
       style={{
         width: '100%',
