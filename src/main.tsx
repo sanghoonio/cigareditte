@@ -27,15 +27,22 @@ function Main() {
             <div className='row page-width main text-center'>
               <div className='col-12 py-4'>
                 <h2 className='fw-lighter mb-3'>Cigareditte</h2>
-                <p className='mt-2 mb-0 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                { totalSmoked == 0 ? 
+                  <p className='mt-2 mb-0 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                  :
+                  <>
+                    <p className='mt-2 mb-0 px-3 fw-light mb-0'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                    <p className='mb-0 px-3 fw-light'>You want another one now, don't you?</p>
+                  </>
+                }
                 <p><img 
                   src={totalSmoked == 0 ? 'ashtray_0.png' : totalSmoked == 1 ? 'ashtray_1.png' : totalSmoked == 2 ? 'ashtray_2.png' : 'ashtray_3.png'} 
                   width='138px' 
                   height='138px' 
                   alt='ashtray'
                 /></p>
-                <button className='btn btn-outline-dark btn-md fw-light' onClick={() => startSmoking()} disabled={isSmoking}>
-                  Light Cigarette
+                <button className='btn btn-danger rounded-4 btn-md fw-light' onClick={() => startSmoking()} disabled={isSmoking}>
+                  { totalSmoked == 0 ? 'Light Cigarette' : 'Smoke One More' }
                 </button>
                 <p className='mt-2 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>
               </div>
