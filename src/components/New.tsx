@@ -6,11 +6,12 @@ import { SelectedItemView } from './SelectedItemView';
 
 function New() {
   const [selectedURL, setSelectedURL] = useState<string | null>(null)
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  
+  const [selectedItem, setSelectedItem] = useState<string | null>(null)
+  const [startIndex, setStartIndex] = useState<number>(0)
+ 
   const { data: newItems } = useNewItems();
 
-  const newItemDetails = useItems(newItems?.slice(0, 30));
+  const newItemDetails = useItems(newItems?.slice(startIndex, startIndex + 30));
   const isLoading = newItemDetails.some(query => query.isLoading);
   const newItemsData = newItemDetails.map(query => query.data);
 
@@ -22,15 +23,18 @@ function New() {
     <div className='row'>
       <div className='col-12 col-lg-5'>
 
-        {newItemsData.map((item, index) => 
+        {newItemsData.map((item) => 
           <div className='mb-2 position-relative text-dark'>
-            <h6 className={`mb-0 cursor-pointer desktop item ${selectedIndex == index ? 'fw-bold' : ''}`} onClick={() => {
-              if (selectedURL == item?.url) {
+            <h6 className={`mb-0 cursor-pointer desktop item ${selectedItem === item?.id ? 'fw-bold' : ''}`} onClick={() => {
+              if (!selectedItem && !item?.url) {
                 setSelectedURL(null)
-                setSelectedIndex(null)
+                setSelectedItem(item?.id)
+              } else if ((selectedItem === item?.id) && (!!item?.url)) {
+                setSelectedURL(null)
+                setSelectedItem(null)
               } else {
                 setSelectedURL(item?.url)
-                setSelectedIndex(index)
+                setSelectedItem(item?.id)
               }
             }}
             >{item?.title}</h6>
@@ -43,9 +47,18 @@ function New() {
           </div>
         )}
 
+        <div className='mt-4 d-flex flex-row justify-content-start gap-1'>
+          <span onClick={() => setStartIndex(startIndex - 30)}>
+            <h5 className={`text-dark bi bi-arrow-left-short cursor-pointer ${startIndex === 0 && 'd-none'}`} /> 
+          </span>
+          <span onClick={() => setStartIndex(startIndex + 30)}>
+            <h5 className={`text-dark bi bi-arrow-right-short cursor-pointer ${startIndex > 300 && 'd-none'}`} />
+          </span>
+        </div>
+
       </div>
       <div className='col-7 desktop'>
-        {!!selectedURL && <SelectedItemView selectedURL={selectedURL} setSelectedURL={setSelectedURL} setSelectedIndex={setSelectedIndex}/>}
+        {!!selectedItem && <SelectedItemView selectedURL={selectedURL} selectedItem={selectedItem} setSelectedURL={setSelectedURL} setSelectedItem={setSelectedItem}/>}
       </div>
     </div>
   )

@@ -38,10 +38,10 @@ html, body, div {
 
 @media (max-width: 992px) {
   .page-padding {
-    padding: 0 2vw;
+    padding: 0 2.5vw;
   }
-  .page-width {
-    padding: 0;
+  .page-width.main {
+    padding-top: 22vh;
   }
   .sidebar, .desktop {
     display: none;
@@ -51,8 +51,6 @@ html, body, div {
   }
   .topbar {
     width: calc(100% + 4vw) !important;
-    backdrop-filter: blur(6px) !important;
-    background-color: #e2ded2bb !important;
     margin: 0 -2vw !important;
     padding: 0 2vw !important;
   }
@@ -64,6 +62,12 @@ html, body, div {
   }
 }
 @media (min-width: 992px) {
+  .page-padding {
+    padding: 0 2vw;
+  }
+  .page-width.main {
+    padding-top: 10rem;
+  }
   .sidebar {
     width: 12%;
     min-width: 150px;
@@ -81,24 +85,6 @@ html, body, div {
     text-decoration-line: underline;
   }
 }
-@media (min-width: 992px) and (max-width: 1200px) {
-  .page-padding {
-    padding: 0 2vw;
-  }
-  /* .page-width {
-    padding-top: 4em;
-    padding-bottom: 4em;
-  } */
-}
-@media (min-width: 1200px) {
-  .page-padding {
-    padding: 0 2vw;
-  }
-  /* .page-width {
-    padding-top: 5em;
-    padding-bottom: 5em;
-  } */
-}
 
 .btn-xs {
   padding: 0.125rem 0.6rem !important;
@@ -110,44 +96,4 @@ html, body, div {
 .btn-xs > .bi {
   font-size: 0.7rem;
   vertical-align: -0.125em;
-}
-
-.smoke-container {
-  position: relative;
-  height: 100px;
-  overflow: hidden;
-}
-
-.smoke-particle {
-  position: absolute;
-  font-family: monospace;
-  color: #888;
-  pointer-events: none;
-  animation: smokeRise 3s ease-out forwards;
-  font-size: 12px;
-}
-
-@keyframes smokeRise {
-  0% {
-    transform: translateY(0) translateX(0) scale(0.5);
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-80px) translateX(var(--drift)) scale(1.2);
-    opacity: 0;
-  }
-}
-
-@keyframes ember-glow {
-  0% {
-    backgroundColor: #ff4400;
-    boxShadow: 0 0 2px #ff4400;
-  }
-  100% {
-    backgroundColor: #ff6600;
-    boxShadow: 0 0 4px #ff6600, 0 0 6px #ff4400;
-  }
 }

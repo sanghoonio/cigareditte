@@ -1,11 +1,12 @@
 type Props = {
-  selectedURL: string; 
+  selectedURL: string | null; 
+  selectedItem: string | null;
   setSelectedURL: (url: string | null) => void;
-  setSelectedIndex: (index: number | null) => void;
+  setSelectedItem: (item: string | null) => void;
 }
 
 export function SelectedItemView(props: Props) {
-  const { selectedURL, setSelectedURL, setSelectedIndex } = props;
+  const { selectedURL, selectedItem, setSelectedURL, setSelectedItem } = props;
 
   return (
     <div 
@@ -25,21 +26,26 @@ export function SelectedItemView(props: Props) {
         height: '2rem'
       }}
     >
-      <button className='btn btn-light btn-xs'>
-        <a className='text-decoration-none text-dark' href={selectedURL} target='_blank' rel='noopener noreferrer'>
+      <button className='btn btn-secondary btn-xs'>
+        <a className='text-decoration-none text-white' href={'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
+          View on HN
+        </a>
+      </button>
+      <button className='btn btn-secondary btn-xs ms-auto'>
+        <a className='text-decoration-none text-white' href={selectedURL ? selectedURL : 'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
           Open in New Tab
         </a>
       </button>
-      <button className='btn btn-danger btn-xs ms-auto' onClick={() => {
+      <button className='btn btn-danger btn-xs ms-1' onClick={() => {
         setSelectedURL(null)
-        setSelectedIndex(null)
+        setSelectedItem(null)
       }}>
         Close
       </button>
     </div>
     <iframe 
       className='rounded-bottom border-top bg-white' 
-      src={selectedURL} 
+      src={selectedURL ? selectedURL : 'https://news.ycombinator.com/item?id=' + selectedItem} 
       style={{
         width: '100%',
         height: 'calc(100% - 2rem)'

@@ -31,7 +31,7 @@ const NavLink = (props: NavLinkProps) => {
 function Navbar() {
   const location = useLocation().pathname.substring(1) || 'hot';
 
-  const { isSmoking, burnProgress } = useCigarette();
+  const { isSmoking, burnProgress, totalSmoked } = useCigarette();
 
   return (
     <>
@@ -51,16 +51,29 @@ function Navbar() {
             </div>
 
             <p className='mb-0 text-center'><img 
-              src='cigarette_1.png' 
+              src={
+                (burnProgress >= 0 && burnProgress < 10) ? 'cigarette_1.png' : 
+                (burnProgress >= 10 && burnProgress < 20) ? 'cigarette_2.png' : 
+                (burnProgress >= 20 && burnProgress < 30) ? 'cigarette_3.png' : 
+                (burnProgress >= 30 && burnProgress < 40) ? 'cigarette_4.png' : 
+                (burnProgress >= 40 && burnProgress < 50) ? 'cigarette_5.png' : 
+                (burnProgress >= 50 && burnProgress < 60) ? 'cigarette_6.png' : 
+                (burnProgress >= 60 && burnProgress < 70) ? 'cigarette_7.png' : 
+                (burnProgress >= 70 && burnProgress < 80) ? 'cigarette_8.png' : 
+                (burnProgress >= 80 && burnProgress < 90) ? 'cigarette_9.png' : 
+                'cigarette_10.png'
+              } 
               width='138px' 
               height='138px' 
               alt='ashtray'
               style={{marginLeft: '-1.5rem'}}
             /></p>
-            <p className='text-xs text-center' style={{marginTop: '-1rem', marginLeft: '-1.5rem'}}>
-              {isSmoking ? `${Math.round(burnProgress)}% burnt` : burnProgress === 100 ? 'Finished' : 'Not lit'}
+            <p className='text-xs text-center mb-0' style={{marginTop: '-1rem', marginLeft: '-1.5rem'}}>
+              {isSmoking ? `${Math.round(burnProgress)}% Burnt` : burnProgress === 100 ? 'Finished' : 'Not lit'}
             </p>
-
+            <p className='text-xs text-center' style={{marginTop: '-0.2rem', marginLeft: '-1.5rem'}}>
+              {`[Cigarettes Smoked: ${totalSmoked}]`}
+            </p>
           </div>
         </div>
       </div>
@@ -86,13 +99,27 @@ function Navbar() {
         </div>
         <div className='row page-width'>
           <p className='mb-0 text-center'><img 
-            src='cigarette_1.png' 
+            src={
+              (burnProgress >= 0 && burnProgress < 10) ? 'cigarette_1.png' : 
+              (burnProgress >= 10 && burnProgress < 20) ? 'cigarette_2.png' : 
+              (burnProgress >= 20 && burnProgress < 30) ? 'cigarette_3.png' : 
+              (burnProgress >= 30 && burnProgress < 40) ? 'cigarette_4.png' : 
+              (burnProgress >= 40 && burnProgress < 50) ? 'cigarette_5.png' : 
+              (burnProgress >= 50 && burnProgress < 60) ? 'cigarette_6.png' : 
+              (burnProgress >= 60 && burnProgress < 70) ? 'cigarette_7.png' : 
+              (burnProgress >= 70 && burnProgress < 80) ? 'cigarette_8.png' : 
+              (burnProgress >= 80 && burnProgress < 90) ? 'cigarette_9.png' : 
+              'cigarette_10.png'
+            } 
             width='138px' 
             height='138px' 
             alt='ashtray'
           /></p>
-          <p className='text-xs text-center' style={{marginTop: '-1rem'}}>
-            {isSmoking ? `${Math.round(burnProgress)}% burnt` : burnProgress === 100 ? 'Finished' : 'Not lit'}
+          <p className='text-xs text-center mb-0' style={{marginTop: '-1rem'}}>
+            {isSmoking ? `${Math.round(burnProgress)}% Burnt` : burnProgress === 100 ? 'Finished' : 'Not lit'}
+          </p>
+          <p className='text-xs text-center mb-2' style={{marginTop: '-0.2rem'}}>
+            {`[Cigarettes Smoked: ${totalSmoked}]`}
           </p>
         </div>
       </div>
