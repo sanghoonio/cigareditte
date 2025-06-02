@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useQuery, useQueries } from '@tanstack/react-query';
 
-const API_BASE = import.meta.env.VITE_API_HOST || 'https://hacker-news.firebaseio.com/v0/';
+import { useCigarette } from '../stores/cigarette';
 
+const API_BASE = import.meta.env.VITE_API_HOST || 'https://hacker-news.firebaseio.com/v0/';
 
 export const getTopItems = async () => {
   const url = `${API_BASE}/topstories.json`;
@@ -29,22 +30,25 @@ export const getItem = async (item: string) => {
 };
 
 export const useTopItems = () => {
+  const { totalSmoked } = useCigarette();
   return useQuery({
-    queryKey: ['topItems'],
+    queryKey: ['topItems', totalSmoked],
     queryFn: () => getTopItems(),
   });
 };
 
 export const useNewItems = () => {
+  const { totalSmoked } = useCigarette();
   return useQuery({
-    queryKey: ['newItems'],
+    queryKey: ['newItems', totalSmoked],
     queryFn: () => getNewItems(),
   });
 };
 
 export const useBestItems = () => {
+  const { totalSmoked } = useCigarette();
   return useQuery({
-    queryKey: ['bestItems'],
+    queryKey: ['bestItems', totalSmoked],
     queryFn: () => getBestItems(),
   });
 };

@@ -47,9 +47,9 @@ function New() {
           </div>
         )}
 
-        <div className='mt-4 d-flex flex-row justify-content-start gap-1'>
+        <div className='mt-4 d-flex flex-row justify-content-start'>
           <span onClick={() => setStartIndex(startIndex - 30)}>
-            <h5 className={`text-dark bi bi-arrow-left-short cursor-pointer ${startIndex === 0 && 'd-none'}`} /> 
+            <h5 className={`text-dark bi bi-arrow-left-short cursor-pointer me-2 ${startIndex === 0 && 'd-none'}`} /> 
           </span>
           <span onClick={() => setStartIndex(startIndex + 30)}>
             <h5 className={`text-dark bi bi-arrow-right-short cursor-pointer ${startIndex > 300 && 'd-none'}`} />
