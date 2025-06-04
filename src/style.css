@@ -84,7 +84,7 @@ html, body, div {
 }
 @media (min-width: 992px) and (max-width: 1200px) {
   .page-width.main {
-    padding-top: 8.5rem;
+    padding-top: 8rem;
   }
 }
 @media (min-width: 1200px) {

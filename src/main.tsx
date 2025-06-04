@@ -45,7 +45,7 @@ function Main() {
                   :
                   <>
                     <p className='mt-2 mb-0 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
-                    <p className='mb-1 px-3 fw-light'>You want another one now, don't you?</p>
+                    <p className='px-3 fw-light'>You want another one now, don't you?</p>
                     {isExpanded &&
                       <div className='row justify-content-center px-4'>
                         <div className='col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4'>
