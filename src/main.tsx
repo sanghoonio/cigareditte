@@ -25,8 +25,8 @@ function Main() {
     <BrowserRouter basename='/cigareditte'>
       {!isSmoking ? (
         <div className='d-flex flex-column flex-lg-row h-100 w-100 page-padding'>
-          <div className='flex-0 h-100 w-100 mb-5'>
-            <div className='row page-width main text-center mb-5'>
+          <div className={`flex-0 h-100 w-100 ${isExpanded && 'mb-5'}`}>
+            <div className={`row page-width main text-center ${isExpanded && 'mb-5'}`}>
               <div className='col-12 py-4'>
                 <h2 className='fw-lighter mb-3'>Cigareditte</h2>
                 { totalSmoked == 0 ? 

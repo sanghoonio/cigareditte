@@ -41,7 +41,7 @@ html, body, div {
     padding: 0 2.5vw;
   }
   .page-width.main {
-    padding-top: 15vh;
+    padding-top: 14vh;
   }
   .sidebar, .desktop {
     display: none;
@@ -84,7 +84,7 @@ html, body, div {
 }
 @media (min-width: 992px) and (max-width: 1200px) {
   .page-width.main {
-    padding-top: 9rem;
+    padding-top: 8.5rem;
   }
 }
 @media (min-width: 1200px) {
