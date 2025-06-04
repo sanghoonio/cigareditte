@@ -41,7 +41,7 @@ html, body, div {
     padding: 0 2.5vw;
   }
   .page-width.main {
-    padding-top: 16vh;
+    padding-top: 15vh;
   }
   .sidebar, .desktop {
     display: none;
@@ -65,9 +65,6 @@ html, body, div {
   .page-padding {
     padding: 0 2vw;
   }
-  .page-width.main {
-    padding-top: 10rem;
-  }
   .sidebar {
     width: 12%;
     min-width: 150px;
@@ -83,6 +80,16 @@ html, body, div {
   }
   .text-hover:hover {
     text-decoration-line: underline;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .page-width.main {
+    padding-top: 9rem;
+  }
+}
+@media (min-width: 1200px) {
+  .page-width.main {
+    padding-top: 10rem;
   }
 }
 

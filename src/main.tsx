@@ -25,13 +25,13 @@ function Main() {
     <BrowserRouter basename='/cigareditte'>
       {!isSmoking ? (
         <div className='d-flex flex-column flex-lg-row h-100 w-100 page-padding'>
-          <div className='flex-0 h-100 w-100'>
-            <div className='row page-width main text-center'>
+          <div className='flex-0 h-100 w-100 mb-5'>
+            <div className='row page-width main text-center mb-5'>
               <div className='col-12 py-4'>
                 <h2 className='fw-lighter mb-3'>Cigareditte</h2>
                 { totalSmoked == 0 ? 
                   <>
-                    <p className='mt-2 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                    <p className='mt-2 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
                     {isExpanded &&
                       <div className='row justify-content-center px-4'>
                         <div className='col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4'>
@@ -44,7 +44,7 @@ function Main() {
                   </>
                   :
                   <>
-                    <p className='mt-2 mb-0 px-3 fw-light mb-0'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
+                    <p className='mt-2 mb-0 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
                     <p className='mb-1 px-3 fw-light'>You want another one now, don't you?</p>
                     {isExpanded &&
                       <div className='row justify-content-center px-4'>
@@ -68,7 +68,7 @@ function Main() {
                   { totalSmoked == 0 ? 'Light Cigarette' : 'Smoke One More' }
                 </button>
                 
-                <p className='mt-2 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>
+                <p className='mt-2 mb-5 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>
               </div>
             </div>
           </div>
