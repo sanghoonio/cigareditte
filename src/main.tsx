@@ -78,7 +78,15 @@ function Main() {
           <Navbar />
           <div className='flex-1 content'>
             <div className='row page-width'>
-              <div className='col-12 p-4'>
+              <div className='col-12 p-4 desktop'>
+                <Routes>
+                  <Route path="/" element={<Top />} />
+                  <Route path="/hot" element={<Top />} />
+                  <Route path="/new" element={<New />} />
+                  <Route path="/best" element={<Best />} />
+                </Routes>
+              </div>
+              <div className='col-12 pt-3 pb-4 px-4 mobile'>
                 <Routes>
                   <Route path="/" element={<Top />} />
                   <Route path="/hot" element={<Top />} />

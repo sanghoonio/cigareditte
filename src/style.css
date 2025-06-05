@@ -46,9 +46,6 @@ html, body, div {
   .sidebar, .desktop {
     display: none;
   }
-  .mobile.item {
-    display: inline-block;
-  }
   .topbar {
     width: calc(100% + 4vw) !important;
     margin: 0 -2vw !important;
@@ -71,9 +68,6 @@ html, body, div {
   }
   .topbar, .mobile {
     display: none;
-  }
-  .desktop.item {
-    display: inline-block;
   }
   .content {
     width: 88%;

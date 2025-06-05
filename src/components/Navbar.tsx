@@ -118,7 +118,7 @@ function Navbar() {
           <p className='text-xs text-center mb-0' style={{marginTop: '-1rem'}}>
             {isSmoking ? `${Math.round(burnProgress)}% Burnt` : burnProgress === 100 ? 'Finished' : 'Not lit'}
           </p>
-          <p className='text-xs text-center mb-2' style={{marginTop: '-0.2rem'}}>
+          <p className='text-xs text-center mb-3' style={{marginTop: '-0.2rem'}}>
             {`[Cigarettes Smoked: ${totalSmoked}]`}
           </p>
         </div>
