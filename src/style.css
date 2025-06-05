@@ -36,15 +36,23 @@ html, body, div {
   cursor: default;
 }
 
+.selected-item-view {
+  position: fixed;
+  z-index: 99999
+}
+
 @media (max-width: 992px) {
   .page-padding {
     padding: 0 2.5vw;
   }
-  .page-width.main {
+  .page-width.splash {
     padding-top: 13vh;
   }
   .sidebar, .desktop {
     display: none;
+  }
+  .main {
+    padding: 1rem 1.5rem 1.5rem !important;
   }
   .topbar {
     width: calc(100% + 4vw) !important;
@@ -56,6 +64,12 @@ html, body, div {
   }
   .text-hover:hover {
     text-decoration-line: none;
+  }
+  .selected-item-view {
+    top: 0.666666rem;
+    right: 0.666666rem;
+    left: 0.666666rem;
+    bottom: 0.666666rem;
   }
 }
 @media (min-width: 992px) {
@@ -69,20 +83,29 @@ html, body, div {
   .topbar, .mobile {
     display: none;
   }
+  .main {
+    padding: 1.5rem !important;
+  }
   .content {
     width: 88%;
   }
   .text-hover:hover {
     text-decoration-line: underline;
   }
+  .selected-item-view {
+    top: 1.5rem;
+    right: 2vw;
+    left: 52vw;
+    bottom: 1.5rem;
+  }
 }
 @media (min-width: 992px) and (max-width: 1200px) {
-  .page-width.main {
+  .page-width.splash {
     padding-top: 8rem;
   }
 }
 @media (min-width: 1200px) {
-  .page-width.main {
+  .page-width.splash {
     padding-top: 10rem;
   }
 }

@@ -26,7 +26,7 @@ function Main() {
       {!isSmoking ? (
         <div className='d-flex flex-column flex-lg-row h-100 w-100 page-padding'>
           <div className={`flex-0 h-100 w-100 ${isExpanded && 'mb-5'}`}>
-            <div className={`row page-width main text-center ${isExpanded && 'mb-5'}`}>
+            <div className={`row page-width splash text-center ${isExpanded && 'mb-5'}`}>
               <div className='col-12 py-4'>
                 <h2 className='fw-lighter mb-3'>Cigareditte</h2>
                 { totalSmoked == 0 ? 
@@ -78,15 +78,7 @@ function Main() {
           <Navbar />
           <div className='flex-1 content'>
             <div className='row page-width'>
-              <div className='col-12 p-4 desktop'>
-                <Routes>
-                  <Route path="/" element={<Top />} />
-                  <Route path="/hot" element={<Top />} />
-                  <Route path="/new" element={<New />} />
-                  <Route path="/best" element={<Best />} />
-                </Routes>
-              </div>
-              <div className='col-12 pt-3 pb-4 px-4 mobile'>
+              <div className='col-12 main'>
                 <Routes>
                   <Route path="/" element={<Top />} />
                   <Route path="/hot" element={<Top />} />
