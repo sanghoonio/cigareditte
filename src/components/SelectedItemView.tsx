@@ -16,16 +16,12 @@ export function SelectedItemView(props: Props) {
           height: '2rem'
         }}
       >
-        <button className='btn btn-secondary btn-xs'>
-          <a className='text-decoration-none text-white' href={'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
-            View on HN
-          </a>
-        </button>
-        <button className='btn btn-secondary btn-xs ms-auto'>
-          <a className='text-decoration-none text-white' href={selectedURL ? selectedURL : 'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
-            Open in New Tab
-          </a>
-        </button>
+        <a className='btn btn-secondary btn-xs text-decoration-none text-white' href={'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
+          View on HN
+        </a>
+        <a className='btn btn-secondary btn-xs ms-auto text-decoration-none text-white' href={selectedURL ? selectedURL : 'https://news.ycombinator.com/item?id=' + selectedItem} target='_blank' rel='noopener noreferrer'>
+          Open in New Tab
+        </a>
         <button className='btn btn-danger btn-xs ms-1' onClick={() => {
           setSelectedURL(null)
           setSelectedItem(null)
