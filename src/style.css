@@ -36,9 +36,8 @@ html, body, div {
   cursor: default;
 }
 
-.selected-item-view {
-  position: fixed;
-  z-index: 99999
+.inherit-weight {
+  font-weight: inherit !important;
 }
 
 @media (max-width: 992px) {
@@ -65,11 +64,13 @@ html, body, div {
   .text-hover:hover {
     text-decoration-line: none;
   }
-  .selected-item-view {
-    top: 0.666666rem;
-    right: 0.666666rem;
-    left: 0.666666rem;
-    bottom: 0.666666rem;
+  .smoke-layer {
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 1;
   }
 }
 @media (min-width: 992px) {
@@ -92,11 +93,13 @@ html, body, div {
   .text-hover:hover {
     text-decoration-line: underline;
   }
-  .selected-item-view {
-    top: 1.5rem;
-    right: 2vw;
-    left: 52vw;
-    bottom: 1.5rem;
+  .smoke-layer {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 1;
   }
 }
 @media (min-width: 992px) and (max-width: 1200px) {
@@ -120,4 +123,82 @@ html, body, div {
 .btn-xs > .bi {
   font-size: 0.7rem;
   vertical-align: -0.125em;
+}
+
+
+/* SMOKE SPRITE SHEET */
+
+@keyframes smoke-sprite {
+  from { background-position: 0 0; }
+  to { background-position: -100% 0; }
+}
+
+/* COMMENTS */
+
+.inline-comments-card {
+  background-color: #dbd7cb;
+}
+
+.inline-comments-card div {
+  background-color: transparent;
+}
+
+.comment-text,
+.comment-text * {
+  font-family: 'Asap Condensed', arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+.comment-text {
+  word-break: break-word;
+}
+
+.comment-text a {
+  word-break: break-all;
+  color: #6b5e50 !important;
+}
+
+.comment-text p {
+  margin-bottom: 0.25rem;
+}
+
+.comment-text pre,
+.comment-text code {
+  font-family: 'Asap Condensed', arial, sans-serif !important;
+  font-size: 0.7rem;
+}
+
+.comment-text pre {
+  overflow-x: auto;
+  background-color: #f5f3ee;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.comment-item {
+  border-left: 1px solid #aaa;
+  padding-left: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.comment-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+
+/* USER PROFILE */
+
+.user-profile-card {
+  background-color: #fff !important;
+}
+
+.user-profile-about {
+  max-height: 4rem;
+  overflow: hidden;
+}
+
+.user-profile-about a {
+  word-break: break-all;
 }

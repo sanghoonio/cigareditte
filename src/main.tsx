@@ -1,14 +1,21 @@
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import Navbar from './components/Navbar';
-import Top from './components/Top.tsx'
-import New from './components/New.tsx'
-import Best from './components/Best.tsx'
+import StoryList from './components/StoryList';
+import { AtmosphericOverlay } from './components/AtmosphericOverlay';
 
 import { useCigarette } from './stores/cigarette';
+import type { StoryType } from './types';
+
+const VALID_PAGES: StoryType[] = ['top', 'new', 'best', 'ask', 'show', 'job'];
+
+function getPageFromURL(): StoryType {
+  const params = new URLSearchParams(window.location.search);
+  const page = params.get('page') as StoryType | null;
+  return page && VALID_PAGES.includes(page) ? page : 'top';
+}
 
 import './style.css'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -20,16 +27,28 @@ const queryClient = new QueryClient();
 function Main() {
   const { isSmoking, totalSmoked, startSmoking } = useCigarette();
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentPage, setCurrentPageState] = useState<StoryType>(getPageFromURL);
+
+  const setCurrentPage = useCallback((page: StoryType) => {
+    setCurrentPageState(page);
+    const url = new URL(window.location.href);
+    if (page === 'top') {
+      url.searchParams.delete('page');
+    } else {
+      url.searchParams.set('page', page);
+    }
+    window.history.pushState({}, '', url);
+  }, []);
 
   return (
-    <BrowserRouter basename='/cigareditte'>
+    <>
       {!isSmoking ? (
         <div className='d-flex flex-column flex-lg-row h-100 w-100 page-padding'>
           <div className={`flex-0 h-100 w-100 ${isExpanded && 'mb-5'}`}>
             <div className={`row page-width splash text-center ${isExpanded && 'mb-5'}`}>
               <div className='col-12 py-4'>
                 <h2 className='fw-lighter mb-3'>Cigareditte</h2>
-                { totalSmoked == 0 ? 
+                { totalSmoked == 0 ?
                   <>
                     <p className='mt-2 px-3 fw-light'>Scrolling social media feeds is like smoking an infinite cigarette. What if the cigarettes weren't infinite anymore?</p>
                     {isExpanded &&
@@ -58,16 +77,16 @@ function Main() {
                   </>
                 }
                 <h5 className={`bi ${isExpanded ? 'bi-chevron-compact-up' : 'bi-chevron-compact-down'}  cursor-pointer mb-0 d-inline-block`} onClick={() => setIsExpanded(!isExpanded)}></h5>
-                <p><img 
-                  src={totalSmoked == 0 ? 'ashtray_0.png' : totalSmoked == 1 ? 'ashtray_1.png' : totalSmoked == 2 ? 'ashtray_2.png' : 'ashtray_3.png'} 
-                  width='138px' 
-                  height='138px' 
+                <p><img
+                  src={totalSmoked == 0 ? 'ashtray_0.png' : totalSmoked == 1 ? 'ashtray_1.png' : totalSmoked == 2 ? 'ashtray_2.png' : 'ashtray_3.png'}
+                  width='138px'
+                  height='138px'
                   alt='ashtray'
                 /></p>
                 <button className='btn btn-danger rounded-4 btn-md fw-light' onClick={() => startSmoking()} disabled={isSmoking}>
                   { totalSmoked == 0 ? 'Light Cigarette' : 'Smoke One More' }
                 </button>
-                
+
                 <p className='mt-2 mb-5 text-xs'>{`[Cigarettes Smoked: ${totalSmoked}]`}</p>
               </div>
             </div>
@@ -75,22 +94,18 @@ function Main() {
         </div>
       ) : (
         <div className='d-flex flex-column flex-lg-row h-100 w-100 page-padding'>
-          <Navbar />
+          <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
           <div className='flex-1 content'>
             <div className='row page-width'>
               <div className='col-12 main'>
-                <Routes>
-                  <Route path="/" element={<Top />} />
-                  <Route path="/hot" element={<Top />} />
-                  <Route path="/new" element={<New />} />
-                  <Route path="/best" element={<Best />} />
-                </Routes>
+                <StoryList type={currentPage} />
               </div>
             </div>
           </div>
+          <AtmosphericOverlay />
         </div>
       )}
-    </BrowserRouter>
+    </>
   );
 }
 

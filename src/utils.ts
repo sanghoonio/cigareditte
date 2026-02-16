@@ -9,33 +9,17 @@ export const getRelativeTime = (timestamp: number) => {
   return `${Math.floor(absDiff / 86400)}d ago`;
 };
 
-
-export function createSmoke(startX: number, startY: number) {
-  const smokeChars = ['°', '˚', '∘', '○', '◦', '•', '∙', '⋅', '∴', '∵'];
-  const container = document.querySelector('.smoke-container');
-  
-  if (!container) return;
-  
-  // Create 3-5 particles
-  for (let i = 0; i < Math.random() * 3 + 2; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'smoke-particle';
-    particle.textContent = smokeChars[Math.floor(Math.random() * smokeChars.length)];
-    
-    // Random horizontal drift
-    const drift = (Math.random() - 0.5) * 40 + 'px';
-    particle.style.setProperty('--drift', drift);
-    
-    // Starting position
-    particle.style.left = startX + (Math.random() - 0.5) * 10 + 'px';
-    particle.style.top = startY + 'px';
-    
-    // Slight delay between particles
-    particle.style.animationDelay = i * 0.2 + 's';
-    
-    container.appendChild(particle);
-    
-    // Remove after animation
-    setTimeout(() => particle.remove(), 3000);
+export const extractDomain = (url?: string): string | null => {
+  if (!url) return null;
+  try {
+    const hostname = new URL(url).hostname;
+    return hostname.replace(/^www\./, '');
+  } catch {
+    return null;
   }
-}
+};
+
+export const getCigaretteSprite = (burnProgress: number): string => {
+  const frame = Math.min(Math.floor(burnProgress / 10) + 1, 10);
+  return `cigarette_${frame}.png`;
+};
