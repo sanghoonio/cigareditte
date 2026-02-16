@@ -1,6 +1,6 @@
 # Cigareditte
 
-[cigareditte](https://sanghoon.io/cigareditte)
+[cigareditte](https://sanghoonio.github.io/cigareditte/)
 
 The average person spends about 150 minutes (2.5 hours) on social media per day. It takes about 5 minutes to smoke a cigarette. How many packs worth of online slop are you smoking?
 
